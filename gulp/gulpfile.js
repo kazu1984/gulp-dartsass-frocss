@@ -26,7 +26,7 @@ const distPath = {
 const browserSync = require("browser-sync");
 const browserSyncOption = {
   // server: distBase,
-  server: "../"
+  server: rootPath,
 };
 const browserSyncFunc = () => {
   browserSync.init(browserSyncOption);
@@ -119,7 +119,7 @@ const imgImagemin = () => {
 
 // ファイルの変更を検知
 const watchFiles = () => {
-  watch(srcPath.js, series(browserSyncReload));
+  watch(srcPath.js, series(js, browserSyncReload));
   watch(srcPath.css, series(cssSass, browserSyncReload));
   watch(srcPath.img, series(imgImagemin, browserSyncReload));
   watch(srcPath.html, series(browserSyncReload));
